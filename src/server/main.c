@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:55:41 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/07 12:25:09 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/07 12:29:28 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 #include "../ft_p.h"
 
-static int usage() {
-	printf("Usage: ./serveur port\n");
+static int usage(int argc, const char **argv) {
+	if (argc > 0)
+		printf("Usage: %s port\n", argv[0]);
 	return (EXIT_FAILURE);
 }
 
 int main(int argc, const char **argv)
 {
 	if (argc != 2)
-		return (usage());
-	(void)argv;
+		return (usage(argc, argv));
 
 	while (1) {
 

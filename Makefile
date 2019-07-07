@@ -6,7 +6,7 @@
 #    By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/23 18:00:29 by jterrazz          #+#    #+#              #
-#    Updated: 2019/07/07 08:48:41 by jterrazz         ###   ########.fr        #
+#    Updated: 2019/07/07 12:31:34 by jterrazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,19 @@ BUILD_PATH = obj
 SRC_PATH = src
 
 SOURCES += server/main.c
-# SOURCES2 += Grace.c
+SOURCES2 += client/main.c
 
 LIB_SOURCES = $(LIB_PATH)/libft/libft.a
 
 OBJECTS = $(SOURCES:%.c=$(BUILD_PATH)/%.o)
-# OBJECTS2 = $(SOURCES2:%.c=$(BUILD_PATH)/%.o)
+OBJECTS2 = $(SOURCES2:%.c=$(BUILD_PATH)/%.o)
 
 # **************************************************************************** #
 # VARIABLES         														   #
 # **************************************************************************** #
 
 NAME = serveur
-# NAME2 = Grace
+NAME2 = client
 
 CC = gcc
 FLAGS_CC = -Wall -Wextra -Werror
@@ -39,13 +39,13 @@ FLAGS_CC = -Wall -Wextra -Werror
 
 .PHONY: all libs clean fclean re test
 
-all: $(NAME)
+all: $(NAME) $(NAME2)
 
 $(NAME): libs $(OBJECTS)
 	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS) $(LIB_SOURCES)
 
-# $(NAME2): $(OBJECTS2)
-# 	$(CC) $(FLAGS_CC) -o $@ $^
+$(NAME2): $(OBJECTS2)
+	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS2) $(LIB_SOURCES)
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(@D)
