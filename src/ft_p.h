@@ -4,9 +4,11 @@
 #define FAILURE -1
 #define SUCCESS 0
 
-#include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "libft.h"
+#include "get_next_line.h"
 
 typedef enum { FALSE, TRUE } t_bool;
 

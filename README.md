@@ -20,6 +20,9 @@ Notions
 - client / server connection
 - Prompt specific
 - Transfer of error messages
+- Keep process alive with instructions
+
+Explain all functions used and their utility
 
 Bonus possibles
 - Different directory per login

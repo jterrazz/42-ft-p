@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:55:41 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/07 12:25:09 by jterrazz         ###   ########.fr       */
+/*   Created: 2017/05/07 21:32:22 by jterrazz          #+#    #+#             */
+/*   Updated: 2019/05/13 15:35:47 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <sys/wait.h>
-// #include <signal.h>
-// TODO wait4 + signal
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include "../ft_p.h"
+# define BUFF_SIZE 3
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
 
-static int usage() {
-	printf("Usage: ./serveur port\n");
-	return (EXIT_FAILURE);
-}
-
-int main(int argc, const char **argv)
+typedef struct	s_buff
 {
-	if (argc != 2)
-		return (usage());
-	(void)argv;
+	int		buff_size;
+	char	buff[BUFF_SIZE];
+}				t_buff;
 
-	while (1) {
+typedef struct	s_list_fd
+{
+	int					fd;
+	struct s_buff		*buff;
+	struct s_list_fd	*next;
+}				t_list_fd;
 
-	}
+int				get_next_line(const int fd, char **line);
 
-	return (EXIT_SUCCESS);
-}
+#endif
