@@ -1,0 +1,13 @@
+.idea/
+obj/
+*.gch
+*.so
+*.o
+*.a
+.DS_Store
+tmp*
+
+# Executable
+a.out
+/serveur
+/client
