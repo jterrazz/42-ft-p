@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:55:41 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/07 12:45:47 by jterrazz         ###   ########.fr       */
+/*   Created: 2019/07/07 12:55:22 by jterrazz          #+#    #+#             */
+/*   Updated: 2019/07/07 13:04:40 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <sys/wait.h>
-// #include <signal.h>
-// TODO wait4 + signal
+#include "../shared.h"
 
-#include "../shared/shared.h"
-
-static int usage(int argc, const char **argv) {
-	if (argc > 0)
-		printf("Usage: %s port\n", argv[0]);
-	return (EXIT_FAILURE);
-}
-
-int main(int argc, const char **argv)
+void exit_putstr(const char *s, int e)
 {
-	if (argc != 2)
-		return (usage(argc, argv));
-
-	while (1) {
-
-	}
-
-	return (EXIT_SUCCESS);
+	ft_putstr(s);
+	exit(e);
 }

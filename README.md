@@ -6,8 +6,9 @@ Install official ftp cmd line tool on mac:
 brew install inetutils
 ```
 
+Simulate a socket server using TCP/IP
 ```
-nc # ????
+nc -l 2399
 ```
 
 TCP sockets.
