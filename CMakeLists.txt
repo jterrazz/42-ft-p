@@ -71,7 +71,4 @@ add_executable(42_ft_p
         libs/libft/ft_tolower.c
         libs/libft/ft_toupper.c
         libs/libft/libft.h
-        src/client/client.h
-        src/client/main.c
-        src/server/main.c
-        src/shared/shared.h)
+	src/ft_p.h)
