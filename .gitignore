@@ -11,3 +11,5 @@ tmp*
 a.out
 /serveur
 /client
+
+cmake-build-debug
