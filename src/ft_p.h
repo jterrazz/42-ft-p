@@ -13,9 +13,6 @@
 #ifndef FT_P_H
 # define FT_P_H
 
-# define FAILURE -1
-# define SUCCESS 0
-
 # include <stdlib.h>
 # include <stdio.h>
 
@@ -24,6 +21,11 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+
+typedef enum	e_suc {
+	FAILURE = -1,
+	SUCCESS = 0
+}				t_suc;
 
 typedef enum	e_bool {
 	FALSE,

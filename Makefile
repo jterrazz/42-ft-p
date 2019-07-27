@@ -6,7 +6,7 @@
 #    By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/23 18:00:29 by jterrazz          #+#    #+#              #
-#    Updated: 2019/07/07 12:31:34 by jterrazz         ###   ########.fr        #
+#    Updated: 2019/07/28 01:13:16 by jterrazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,21 @@ LIB_PATH = libs
 BUILD_PATH = obj
 SRC_PATH = src
 
-SOURCES += server/main.c
-SOURCES2 += client/main.c
+SOURCES_C += client/main.c
+SOURCES_S += server/main.c
 
-LIB_SOURCES = $(LIB_PATH)/libft/libft.a
+LIBS = $(LIB_PATH)/libft/libft.a
 
-OBJECTS = $(SOURCES:%.c=$(BUILD_PATH)/%.o)
-OBJECTS2 = $(SOURCES2:%.c=$(BUILD_PATH)/%.o)
+OBJECTS_S = $(SOURCES_S:%.c=$(BUILD_PATH)/%.o)
+OBJECTS_C = $(SOURCES_C:%.c=$(BUILD_PATH)/%.o)
 
 # **************************************************************************** #
 # VARIABLES         														   #
 # **************************************************************************** #
 
 NAME = ft_p
-NAME1 = serveur
-NAME2 = client
+NAME_S = serveur
+NAME_C = client
 
 CC = gcc
 FLAGS_CC = -Wall -Wextra -Werror
@@ -42,13 +42,13 @@ FLAGS_CC = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(NAME1) $(NAME2)
+$(NAME): $(NAME_S) $(NAME_C)
 
-$(NAME1): libs $(OBJECTS)
-	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS) $(LIB_SOURCES)
+$(NAME_S): libs $(OBJECTS_S)
+	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS_S) $(LIBS)
 
-$(NAME2): $(OBJECTS2)
-	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS2) $(LIB_SOURCES)
+$(NAME_C): $(OBJECTS_C)
+	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS_C) $(LIBS)
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(@D)
@@ -64,7 +64,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIB_PATH)/libft
-	@rm -f $(NAME1) $(NAME2) $(LIB_NAME)
+	@rm -f $(NAME_S) $(NAME_C) $(LIB_NAME)
 	@echo "Fclean \033[33mok\033[0m"
 
 re: fclean $(NAME)

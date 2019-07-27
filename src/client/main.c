@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 00:50:30 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/28 00:59:38 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/28 01:00:15 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int main(int argc, char const *argv[])
 {
-
+	return (EXIT_SUCCESS);
 }
