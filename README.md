@@ -10,7 +10,7 @@ Simulate a socket server using TCP/IP
 ```
 nc -l 2399
 ```
-
+Check get next line is used
 TCP sockets.
 Notions
 - Multiple clients with fork(2)

@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 08:51:49 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/09 10:46:44 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/16 11:24:49 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void *create_sockaddr_in(uint32_t port, char *addr, int addr_len) {
 
 	// Check why memcpy works in ipv4
 	ft_memcpy(&sockaddr->sin_addr, addr, addr_len);
-	// sin_family; /* famille d'ad 
+	// sin_family; /* famille d'ad
 }
 
 // TODO Use v2 for IPV6

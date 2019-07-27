@@ -24,6 +24,4 @@ struct s_instructions {
 
 };
 
-void exit_putstr(const char *s, int e);
-
 #endif

@@ -27,7 +27,8 @@ OBJECTS2 = $(SOURCES2:%.c=$(BUILD_PATH)/%.o)
 # VARIABLES         														   #
 # **************************************************************************** #
 
-NAME = serveur
+NAME = ft_p
+NAME1 = serveur
 NAME2 = client
 
 CC = gcc
@@ -37,11 +38,13 @@ FLAGS_CC = -Wall -Wextra -Werror
 # COMMANDS  		    													   #
 # **************************************************************************** #
 
-.PHONY: all libs clean fclean re test
+.PHONY: all libs clean fclean re
 
-all: $(NAME) $(NAME2)
+all: $(NAME)
 
-$(NAME): libs $(OBJECTS)
+$(NAME): $(NAME1) $(NAME2)
+
+$(NAME1): libs $(OBJECTS)
 	$(CC) $(FLAGS_CC) -o $@ $(OBJECTS) $(LIB_SOURCES)
 
 $(NAME2): $(OBJECTS2)
