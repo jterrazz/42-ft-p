@@ -6,11 +6,11 @@ set(CMAKE_C_STANDARD 11)
 include_directories(inc)
 include_directories(libs/get_next_line)
 include_directories(libs/libft)
-include_directories(src/client)
-include_directories(src/shared)
+include_directories(src)
 
 add_executable(42_ft_p
-        libs/get_next_line/get_next_line.c
+		src/client/main.c
+		libs/get_next_line/get_next_line.c
         libs/get_next_line/get_next_line.h
         libs/libft/ft_atoi.c
         libs/libft/ft_bzero.c
@@ -71,4 +71,4 @@ add_executable(42_ft_p
         libs/libft/ft_tolower.c
         libs/libft/ft_toupper.c
         libs/libft/libft.h
-	src/ft_p.h)
+	src/ft_p.h src/server/main.c)

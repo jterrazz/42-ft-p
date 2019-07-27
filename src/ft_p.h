@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_p.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/28 00:46:35 by jterrazz          #+#    #+#             */
+/*   Updated: 2019/07/28 00:46:36 by jterrazz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_P_H
 # define FT_P_H
 
@@ -17,6 +29,8 @@ typedef enum	e_bool {
 	FALSE,
 	TRUE
 }				t_bool;
+
+typedef
 
 typedef struct protoent			t_protoent;
 typedef struct sockaddr_in		t_sockaddr_in;
