@@ -4,14 +4,14 @@
 # define FAILURE -1
 # define SUCCESS 0
 
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-#include <sys/socket.h>
-#include <netdb.h>
+# include <sys/socket.h>
+# include <netdb.h>
 
-#include "libft.h"
-#include "get_next_line.h"
+# include "libft.h"
+# include "get_next_line.h"
 
 typedef enum	e_bool {
 	FALSE,
