@@ -6,7 +6,7 @@
 #    By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/23 18:00:29 by jterrazz          #+#    #+#              #
-#    Updated: 2019/07/28 01:13:16 by jterrazz         ###   ########.fr        #
+#    Updated: 2019/07/28 21:38:04 by jterrazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,15 @@ LIB_PATH = libs
 BUILD_PATH = obj
 SRC_PATH = src
 
-SOURCES_C += client/main.c
+SOURCES_C += client/main.c client/client.c
 SOURCES_S += server/main.c
 
-LIBS = $(LIB_PATH)/libft/libft.a
+SHARED_SOURCES = shared/socket.c
+
+SOURCES_C += $(SHARED_SOURCES)
+SOURCES_S += $(SHARED_SOURCES)
+
+LIBS = $(LIB_PATH)/libft/libft.a $(LIB_PATH)/ft_printf/libftprintf.a
 
 OBJECTS_S = $(SOURCES_S:%.c=$(BUILD_PATH)/%.o)
 OBJECTS_C = $(SOURCES_C:%.c=$(BUILD_PATH)/%.o)
@@ -56,6 +61,7 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 
 libs:
 	@make -s -C $(LIB_PATH)/libft
+	@make -s -C $(LIB_PATH)/ft_printf
 
 clean:
 	@make clean -C $(LIB_PATH)/libft

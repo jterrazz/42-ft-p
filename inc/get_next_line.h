@@ -1,1 +1,1 @@
-../libs/get_next_line/get_next_line.h
+../libs/libft/get_next_line.h
