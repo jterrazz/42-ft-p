@@ -6,9 +6,13 @@ Install official ftp cmd line tool on mac:
 brew install inetutils
 ```
 
+
+
+
 Simulate a socket server using TCP/IP
 ```
 nc -l 2399
+nc -k -l 127.0.0.1 11111
 ```
 Check get next line is used
 TCP sockets.

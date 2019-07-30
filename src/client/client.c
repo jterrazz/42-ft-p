@@ -6,14 +6,14 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 17:25:20 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/28 21:49:37 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/28 23:48:03 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_p.h"
 
 // Try if using ipv6 is retro compatible w ipv4
-t_exit	connect_client(t_client *client)
+t_exit	start_client(t_client *client)
 {
 	struct sockaddr sock_addr;
 
@@ -29,14 +29,14 @@ t_exit	connect_client(t_client *client)
 	return (SUCCESS);
 }
 
-t_exit	create_client(t_client *client, char const **argv)
+t_exit	create_client(t_client *client, char const *hostname, char const *port_str)
 {
 	ft_bzero(client, sizeof(client));
-	if (!(client->host = gethostbyname(argv[1]))) // TODO Can use IPV6 here
+	if (!(client->host = gethostbyname(hostname))) // TODO Can use IPV6 here
 	{
 		ft_printf("Error: Host is not valid\n");
 		return (FAILURE);
 	}
-	client->port = ft_atoi(argv[2]); // TODO Understand how htons deduct the byte order, probably because intel is little endian so it knows
+	client->port = ft_atoi(port_str); // TODO Understand how htons deduct the byte order, probably because intel is little endian so it knows
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 00:50:30 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/28 18:19:36 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/29 00:51:58 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ static int usage(char const *exec)
 	return (EXIT_FAILURE);
 }
 
-t_exit	handle_cmd(t_client *client, char *cmd)
-{
-	(void)client;
-	(void)cmd;
-	return (SUCCESS);
-}
-
 /*
  * Initialise the client data with args (address, port).
  * A socket is created. Once the socket connects to the host,
@@ -34,22 +27,12 @@ t_exit	handle_cmd(t_client *client, char *cmd)
 int	main(int argc, char const *argv[])
 {
 	t_client	client;
-	char		*line;
 
 	if (argc != 3)
 		return usage(argv[0]);
-	if (create_client(&client, argv) || connect_client(&client))
+	if (create_client(&client, argv[1], argv[2]) || start_client(&client))
 		return (FAILURE);
-	while (!client.exit)
-	{
-		ft_printf("<ftp> ");
-		if (get_next_line(0, &line) > 0) {
-			// Handle quit ? ctrl d ?
-			// Close socket on exit
-			if (handle_cmd(&client, line))
-				return (FAILURE);
-		}
-		free(line);
-	}
+	if (start_client_interface(&client))
+		return (FAILURE);
 	return (EXIT_SUCCESS);
 }
