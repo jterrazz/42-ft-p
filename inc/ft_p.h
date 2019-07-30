@@ -6,14 +6,17 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 00:46:35 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 13:45:12 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:55:44 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_P_H
 # define FT_P_H
 
+# define CLRF_STR "\x0D\x0A"
+
 # define SERVER_BACKLOG 50
+# define MSG_BUFFER 64
 
 # include <stdlib.h>
 
@@ -59,7 +62,7 @@ typedef enum	e_ftp_cmd {
 }				t_ftp_cmd;
 
 typedef struct	s_ftp_cmd_info {
-	char		usercmd[10];
+	char		user_cmd[10];
 	char 		cmd[10];
 	t_ftp_cmd	flag;
 	t_exit		(*client_handler)(t_client *client, struct s_ftp_cmd_info *cmd, char **args);
@@ -67,10 +70,15 @@ typedef struct	s_ftp_cmd_info {
 
 extern t_ftp_cmd_info g_ftp_cmds[];
 
-typedef struct	e_ftp_cmd_data {
+typedef struct	e_ftp_cmd_req {
 	t_ftp_cmd_info	*cmd;
 	char			**args;
-}				t_ftp_cmd_data;
+}				t_ftp_cmd_req;
+
+typedef struct	e_ftp_res {
+	int 	status;
+	char 	*message;
+}				t_ftp_res;
 
 /*
  * Client methods
@@ -80,14 +88,15 @@ t_exit	create_client(t_client *client, char const *hostname, char const *port_st
 t_exit	start_client(t_client *client);
 t_exit	start_client_interface(t_client *client);
 
-t_exit	client_cmd_ls(t_client *client, t_ftp_cmd_info *cmd, char **args);
+t_exit	client_cmd_default(t_client *client, t_ftp_cmd_info *cmd, char **args);
+t_exit	send_cmd(int socket, t_ftp_cmd_req *cmd_req);
 
 /*
  * Server methods
  */
 
 t_exit	start_server(t_server *server);
-t_exit accept_connections(t_server *server);
+t_exit	accept_connections(t_server *server);
 
 /*
  * Shared methods
@@ -95,8 +104,9 @@ t_exit accept_connections(t_server *server);
 
 int get_tcp_socket(void);
 void create_sockaddr(struct sockaddr *sockaddr, int port, struct hostent *host);
+void	*receive_msg(int socket);
 
 char *ft_strjoin_free(char *str1, char *str2, t_bool free1, t_bool free2);
-char *cmd_stringify(t_ftp_cmd_data *cmd_data);
+char *cmd_stringify(t_ftp_cmd_req *cmd_data);
 
 #endif

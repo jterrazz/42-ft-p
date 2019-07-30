@@ -6,11 +6,11 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 17:25:20 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/28 23:48:03 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:13:40 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_p.h"
+#include "ft_p.h"
 
 // Try if using ipv6 is retro compatible w ipv4
 t_exit	start_client(t_client *client)

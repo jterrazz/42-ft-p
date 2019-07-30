@@ -6,11 +6,11 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 19:10:50 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/28 19:10:50 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:13:40 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_p.h"
+#include "ft_p.h"
 
 int get_tcp_socket(void)
 {

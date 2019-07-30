@@ -6,11 +6,11 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 00:51:42 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 00:54:19 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 15:39:15 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_p.h"
+#include "ft_p.h"
 
 t_exit	handle_line_cmd(t_client *client, char *line_cmd)
 {
@@ -22,8 +22,12 @@ t_exit	handle_line_cmd(t_client *client, char *line_cmd)
 		return (FAILURE);
 	while (args && args[0] && cmd_infos->flag != CMD_NULL)
 	{
-		if (!ft_strcmp(cmd_infos->usercmd, args[0]))
-			return cmd_infos->client_handler(client, cmd_infos, args);
+		if (!ft_strcmp(cmd_infos->user_cmd, args[0]))
+		{
+			if (cmd_infos->client_handler)
+				return cmd_infos->client_handler(client, cmd_infos, args);
+			return client_cmd_default(client, cmd_infos, args);
+		}
 		cmd_infos += 1;
 	}
 	// Print usage ???

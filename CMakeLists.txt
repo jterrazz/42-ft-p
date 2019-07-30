@@ -3,10 +3,7 @@ project(42_ft_p C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(libs/ft_printf/inc)
-include_directories(libs/get_next_line)
-include_directories(libs/libft)
-include_directories(src)
+include_directories(inc)
 
 set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
@@ -105,8 +102,8 @@ add_executable(client
 	libs/libft/ft_toupper.c
 	libs/libft/libft.h
 	src/client/main.c
-	src/client/handler/ls.c
-	src/ft_p.h src/client/client.c src/shared/socket.c src/shared/cmd.c src/client/interface.c src/shared/cmd_stringify.c src/shared/cmd_parse.c src/shared/ft_strjoin_free.c)
+	src/shared/cmd_handler/default.c
+	inc/ft_p.h src/client/client.c src/shared/socket.c src/shared/cmd.c src/client/interface.c src/shared/cmd_stringify.c src/shared/cmd_parse.c src/shared/ft_strjoin_free.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c)
 
 add_executable(server
 	libs/ft_printf/inc/ft_printf.h
@@ -203,4 +200,4 @@ add_executable(server
 	libs/libft/ft_toupper.c
 	libs/libft/libft.h
 	src/server/main.c
-	src/ft_p.h src/client/client.c src/shared/socket.c src/server/server.c src/server/accept.c src/shared/cmd.c src/shared/cmd_stringify.c)
+	inc/ft_p.h src/client/client.c src/shared/socket.c src/server/server.c src/shared/cmd.c src/shared/cmd_stringify.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c src/shared/ft_strjoin_free.c)
