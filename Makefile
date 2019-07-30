@@ -6,7 +6,7 @@
 #    By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/23 18:00:29 by jterrazz          #+#    #+#              #
-#    Updated: 2019/07/28 21:38:04 by jterrazz         ###   ########.fr        #
+#    Updated: 2019/07/30 19:58:24 by jterrazz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ LIB_PATH = libs
 BUILD_PATH = obj
 SRC_PATH = src
 
-SOURCES_C += client/main.c client/client.c
+SOURCES_C += client/main.c client/client.c client/interface.c
 SOURCES_S += server/main.c
 
-SHARED_SOURCES = shared/socket.c
+SHARED_SOURCES = shared/socket.c shared/cmd.c shared/ft_strjoin_free.c shared/parse.c shared/receive.c shared/send.c shared/stringify.c
+SHARED_SOURCES += shared/cmd_handler/default.c shared/cmd_handler/ls.c shared/cmd_handler/get.c
 
 SOURCES_C += $(SHARED_SOURCES)
 SOURCES_S += $(SHARED_SOURCES)

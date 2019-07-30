@@ -103,7 +103,7 @@ add_executable(client
 	libs/libft/libft.h
 	src/client/main.c
 	src/shared/cmd_handler/default.c
-	inc/ft_p.h src/client/client.c src/shared/socket.c src/shared/cmd.c src/client/interface.c src/shared/cmd_stringify.c src/shared/cmd_parse.c src/shared/ft_strjoin_free.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c)
+	inc/ft_p.h src/client/client.c src/shared/socket.c src/shared/cmd.c src/client/interface.c src/shared/stringify.c src/shared/parse.c src/shared/ft_strjoin_free.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c src/shared/cmd_handler/ls.c)
 
 add_executable(server
 	libs/ft_printf/inc/ft_printf.h
@@ -200,4 +200,6 @@ add_executable(server
 	libs/libft/ft_toupper.c
 	libs/libft/libft.h
 	src/server/main.c
-	inc/ft_p.h src/client/client.c src/shared/socket.c src/server/server.c src/shared/cmd.c src/shared/cmd_stringify.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c src/shared/ft_strjoin_free.c)
+	src/shared/cmd_handler/ls.c
+	src/shared/parse.c
+	inc/ft_p.h src/client/client.c src/shared/socket.c src/server/server.c src/shared/cmd.c src/shared/stringify.c src/shared/send.c src/shared/cmd_handler/get.c src/shared/receive.c src/shared/ft_strjoin_free.c)

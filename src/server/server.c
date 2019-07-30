@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 23:47:16 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 16:06:24 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 20:10:30 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 // TODO Explain how fork works
 
-t_exit listen_client_cmds(int client_socket)
+static t_exit receive_client_cmds(t_server *server, int client_socket)
 {
 	char *cmd_msg;
+	t_cmd *cmd;
 
 	while (TRUE)
 	{
@@ -25,7 +26,16 @@ t_exit listen_client_cmds(int client_socket)
 			ft_printf("Error: Received command message fail\n");
 			return (EXIT_FAILURE);
 		}
-		ft_printf("New command: %s\n", cmd_msg);
+		ft_printf("<cleeeeeee> CMD: %s:\n", cmd_msg); // Maybe hide
+		// Exit cmd
+		if (!(cmd = cmd_parse(cmd_msg)))
+			return (FAILURE); // Return null of return status code
+		if (cmd->infos->server_handler)
+			cmd->infos->server_handler(server, client_socket, cmd);
+		else
+			send_status(client_socket, 551, "Requested action aborted. Command type unknown.\n");
+//		free req
+		// free args
 	}
 	return (SUCCESS);
 }
@@ -53,10 +63,9 @@ t_exit accept_connections(t_server *server)
 			return (FAILURE);
 		}
 		ft_printf("\033[1;34mNew client connected\033[0m\n");
-		if (listen_client_cmds(client_socket))
+		if (receive_client_cmds(server, client_socket))
 			return (FAILURE);
 	}
-	return (SUCCESS);
 }
 
 /*

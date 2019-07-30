@@ -6,13 +6,28 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:59:49 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 14:20:24 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:05:05 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
-t_exit send_cmd(int socket, t_ftp_cmd_req *cmd_req)
+t_exit send_status(int socket, int code, char *msg)
+{
+	char		*status_str;
+	t_status	status;
+
+	status.code = code;
+	status.message = msg;
+	if (!(status_str = status_stringify(&status)))
+		return (FAILURE);
+	if (send(socket, status_str, ft_strlen(status_str), 0) < 0)
+		return (FAILURE);
+	free(status_str);
+	return (SUCCESS);
+}
+
+t_exit send_cmd(int socket, t_cmd *cmd_req)
 {
 	char *cmd_str;
 

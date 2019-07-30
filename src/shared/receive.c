@@ -6,7 +6,7 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:42:28 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 15:57:00 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:00:01 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*receive_msg(int socket)
 		if ((ret = recv(socket, buffer, MSG_BUFFER, 0)) > 0)
 		{
 			eol = ft_strstr(buffer, CLRF_STR) - buffer;
-			ret = eol ? eol - 1 : ret;
+			ret = eol ? eol : ret;
 			if (!(new = malloc(ret + total_size + 1)))
 				return (NULL);
 			ft_memmove(new, data, total_size);

@@ -6,32 +6,40 @@
 /*   By: jterrazz <jterrazz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 00:51:42 by jterrazz          #+#    #+#             */
-/*   Updated: 2019/07/30 15:39:15 by jterrazz         ###   ########.fr       */
+/*   Updated: 2019/07/30 19:21:16 by jterrazz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_p.h"
 
+// Don't make server stop when receiving bad message
+
 t_exit	handle_line_cmd(t_client *client, char *line_cmd)
 {
-	t_ftp_cmd_info		*cmd_infos;
 	char				**args;
+	t_ftp_cmd_info		*cmd_infos;
+	t_exit				ret;
+	t_cmd cmd_req;
 
-	cmd_infos = g_ftp_cmds;
 	if (!(args = ft_strsplit(line_cmd, ' ')))
 		return (FAILURE);
-	while (args && args[0] && cmd_infos->flag != CMD_NULL)
+	if ((cmd_infos = get_cmd_infos(*args, CMDNAME_USER)))
 	{
-		if (!ft_strcmp(cmd_infos->user_cmd, args[0]))
-		{
-			if (cmd_infos->client_handler)
-				return cmd_infos->client_handler(client, cmd_infos, args);
-			return client_cmd_default(client, cmd_infos, args);
-		}
-		cmd_infos += 1;
+		cmd_req.infos = cmd_infos;
+		cmd_req.args = args + 1;
+		if (cmd_infos->client_handler)
+			ret = cmd_infos->client_handler(client, &cmd_req);
+		else
+			ret = client_cmd_default(client, &cmd_req);
+		char *msg = receive_msg(client->socket);
+		ft_printf("Response: %s\n", msg);
+
+		// TODO Free message
+		// TODO Free args indide
+		return (ret);
 	}
-	// Print usage ???
-	// free args
+
+	// TODO Print usage ?
 	return (SUCCESS);
 }
 
